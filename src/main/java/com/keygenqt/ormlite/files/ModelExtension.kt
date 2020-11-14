@@ -48,6 +48,7 @@ class ModelExtension(
             .addImport("com.j256.ormlite.table", "TableUtils")
             .addImport("org.json", "JSONArray")
             .addImport("org.json", "JSONObject")
+            .addImport("android.util", "Log")
     }
 
     override fun addExtension() {

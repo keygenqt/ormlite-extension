@@ -16,12 +16,17 @@
 
 package com.keygenqt.ormlite
 
-import com.google.auto.service.*
-import com.j256.ormlite.table.*
-import com.keygenqt.ormlite.files.*
-import javax.annotation.processing.*
+import com.google.auto.service.AutoService
+import com.j256.ormlite.table.DatabaseTable
+import com.keygenqt.ormlite.files.ModelExtension
+import com.keygenqt.ormlite.files.OrmliteBase
+import com.keygenqt.ormlite.files.OrmliteConf
+import javax.annotation.processing.AbstractProcessor
+import javax.annotation.processing.Processor
+import javax.annotation.processing.RoundEnvironment
 import javax.lang.model.SourceVersion
-import javax.lang.model.element.*
+import javax.lang.model.element.Element
+import javax.lang.model.element.TypeElement
 
 @AutoService(Processor::class)
 class Generator : AbstractProcessor() {
@@ -36,7 +41,10 @@ class Generator : AbstractProcessor() {
         )
     }
 
-    override fun process(annotations: MutableSet<out TypeElement>?, roundEnv: RoundEnvironment?): Boolean {
+    override fun process(
+        annotations: MutableSet<out TypeElement>?,
+        roundEnv: RoundEnvironment?
+    ): Boolean {
         roundEnv?.let {
             val list = arrayListOf<Element>()
             roundEnv.getElementsAnnotatedWith(DatabaseTable::class.java).forEach {

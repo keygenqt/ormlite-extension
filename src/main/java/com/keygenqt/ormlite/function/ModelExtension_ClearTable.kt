@@ -49,7 +49,7 @@ class ModelExtensionClearTable(private val el: Element, private val evn: Process
                         """    try {
     TableUtils.clearTable(${OrmliteBase::class.java.simpleName}.getConnection(), ${it.simpleName}::class.java)
 } catch (ex: SQLException) {
-    println(ex.message)
+    Log.e("TAG", ex.message!!)
 }"""
                     ).toString()
                 ).build()

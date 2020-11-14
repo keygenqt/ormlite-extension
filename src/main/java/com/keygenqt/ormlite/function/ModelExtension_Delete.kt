@@ -99,7 +99,7 @@ class ModelExtensionDelete(
     ${element.simpleName}.dao().delete(this)
     $foreignOneMany
 } catch (ex: SQLException) {
-    println(ex.message)
+    Log.e("TAG", ex.message!!)
 }"""
                     ).toString()
                 ).build()

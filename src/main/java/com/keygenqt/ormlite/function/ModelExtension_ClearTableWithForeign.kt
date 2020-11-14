@@ -81,7 +81,7 @@ class ModelExtensionClearTableWithForeign(private val el: Element,
     $foreignOneMany
     TableUtils.clearTable(${OrmliteBase::class.java.simpleName}.getConnection(), ${element.simpleName}::class.java)
 } catch (ex: SQLException) {
-    println(ex.message)
+    Log.e("TAG", ex.message!!)
 }"""
                     ).toString()
                 ).build()

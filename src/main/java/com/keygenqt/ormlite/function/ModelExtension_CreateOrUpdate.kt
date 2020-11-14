@@ -100,7 +100,7 @@ class ModelExtensionCreateOrUpdate(
     ${element.simpleName}.dao().createOrUpdate(this)
     $foreignOneMany
 } catch (ex: SQLException) {
-    println(ex.message)
+    Log.e("TAG", ex.message!!)
 }
 return this"""
                     ).toString()
