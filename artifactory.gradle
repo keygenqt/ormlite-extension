@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.17.2"
+    }
+}
+
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
+def packageName = 'com.keygenqt.artifactory'
+def env = 'android'
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId packageName
+            artifactId project.getName() + "-$env"
+            artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'https://artifactory.keygenqt.com/artifactory'
+    publish {
+        repository {
+            repoKey = 'open-source'
+            username = arusername
+            password = arpassword
+        }
+        defaults {
+            publications('aar')
+            publishArtifacts = true
+            properties = ['qa.level': 'basic', 'dev.team': 'core']
+            publishPom = true
+        }
+    }
+}
